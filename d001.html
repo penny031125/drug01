@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <style>
 text{
-	font-size:13px;
+	font: size 14;px;
 }
 .mainBars rect{
   shape-rendering: auto;
@@ -31,17 +31,17 @@ line{
 <script src="viz.v1.1.0.min.js"></script> </script>
 <script>
 
-var data=[['運輸','CA',16,0],
+var data=[['運輸','新北市',16,0],
 ['意圖販賣','新北市',1278,4],
-['強暴脅迫等人非法施用','新北市',27,0],
+['脅迫施用','新北市',27,0],
 ['引誘他人使用','新北市',58,0],
 ['轉讓','新北市',0,15],
 ['施用','新北市',1,0],
 ['持有','新北市',5453,35],
-['製造栽種','新北市',683,1],
+['製造','新北市',683,1],
 ['其他','新北市',683,1],
 ];
-var color ={Elite:"#3366CC", Grand:"#DC3912",  Lite:"#FF9900", Medium:"#109618", Plus:"#990099", Small:"#0099C6"};
+var color ={運輸:"#3366CC", 意圖販賣:"#DC3912", 脅迫施用:"#FF9900", 轉讓:"#109618", 施用:"#990099", 製造:"#C63300", 持有:"#0099C6" , 其他:"#444444",};
 var svg = d3.select("body").append("svg").attr("width", 960).attr("height", 800);
 
 svg.append("text").attr("x",250).attr("y",70)
