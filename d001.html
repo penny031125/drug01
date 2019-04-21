@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <style>
 text{
-	font: size 12;px;}
+	font: size 11;px;}
 .mainBars rect{
   shape-rendering: auto;
   fill-opacity: 0 ;
@@ -18,7 +18,7 @@ text{
 }
 .header{
 	text-anchor:middle;
-	font-size:12px;
+	font-size:11px;
 }
 line{
 	stroke:grey;
@@ -38,6 +38,15 @@ var data=[['運輸','新北市',9],
 ['持有','新北市',0],
 ['製造','新北市',0],
 ['其他','新北市',0,],
+['運輸','台北市',9],
+['意圖販賣','台北市',418],
+['脅迫施用','台北市',0,],
+['引誘他人使用','台北市',0],
+['轉讓','台北市',0],
+['施用','台北市',1],
+['持有','台北市',0],
+['製造','台北市',0],
+['其他','台北市',0,],
 ];
 var color ={運輸:"#3366CC", 意圖販賣:"#DC3912", 脅迫施用:"#FF9900", 轉讓:"#109618", 施用:"#990099", 製造:"#C63300", 持有:"#0099C6" , 其他:"#444444",};
 var svg = d3.select("body").append("svg").attr("width", 1000).attr("height", 1000);
@@ -74,11 +83,11 @@ var bp=[ viz.bP()
 	g[i].append("text").attr("x",-50).attr("y",-8).style("text-anchor","middle").text("Channel");
 	g[i].append("text").attr("x", 250).attr("y",-8).style("text-anchor","middle").text("State");
 	
-	g[i].append("line").attr("x1",-100).attr("x2",0);
-	g[i].append("line").attr("x1",200).attr("x2",300);
+	g[i].append("line").attr("x1",-100);
+	g[i].append("line").attr("x1",200);
 	
-	g[i].append("line").attr("y1",610).attr("y2",610).attr("x1",-100).attr("x2",0);
-	g[i].append("line").attr("y1",610).attr("y2",610).attr("x1",200).attr("x2",300);
+	g[i].append("line").attr("y1",610).attr("x1",-100);
+	g[i].append("line").attr("y1",610).attr("x1",200);
 	
 	g[i].selectAll(".mainBars")
 		.on("mouseover",mouseover)
