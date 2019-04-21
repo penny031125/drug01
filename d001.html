@@ -166,7 +166,7 @@ var bp=[ viz.bP()
 	g[i].append("text").attr("x",-50).attr("y",-8).style("text-anchor","middle").text("犯罪手法");
 	g[i].append("text").attr("x", 250).attr("y",-8).style("text-anchor","middle").text("縣市");
 	
-	g[i].append("line").attr("x1",-200).attr("x2",200);
+	g[i].append("line").attr("x1",-100).attr("x2",200);
 	g[i].append("line").attr("x1",200).attr("x2",300);
 	
 	g[i].append("line").attr("y1",610).attr("y2",610).attr("x1",-100).attr("x2",0);
@@ -177,7 +177,7 @@ var bp=[ viz.bP()
 		.on("mouseout",mouseout);
 
 	g[i].selectAll(".mainBars").append("text").attr("class","label")
-		.attr("x",d=>(d.part=="primary"? -50: 30))
+		.attr("x",d=>(d.part=="primary"? -100: 30))
 		.attr("y",d=>+6)
 		.text(d=>d.key)
 		.attr("text-anchor",d=>(d.part=="primary"? "end": "start"));
