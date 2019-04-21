@@ -42,13 +42,11 @@ var data=[['運輸','新北市',16,0],
 ['其他','新北市',683,1],
 ];
 var color ={運輸:"#3366CC", 意圖販賣:"#DC3912", 脅迫施用:"#FF9900", 轉讓:"#109618", 施用:"#990099", 製造:"#C63300", 持有:"#0099C6" , 其他:"#444444",};
-var svg = d3.select("body").append("svg").attr("width", 1000).attr("height", 800);
+var svg = d3.select("body").append("svg").attr("width", 1000).attr("height", 1000);
 
-svg.append("text").attr("x",250).attr("y",70)
-	.attr("class","header").text("Sales Attempt");
+svg.append("text").attr("x",250).attr("y",800)
+	.attr("class","header").text("縣市未成年反毒手法");
 	
-svg.append("text").attr("x",750).attr("y",70)
-	.attr("class","header").text("Sales");
 
 var g =[svg.append("g").attr("transform","translate(150,100)")
 		,svg.append("g").attr("transform","translate(650,100)")];
