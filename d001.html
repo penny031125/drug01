@@ -141,7 +141,7 @@ var color ={運輸:"#002642", 販賣:"#840032", 脅迫施用:"#E59500", 轉讓:"
 var svg = d3.select("body").append("svg").attr("width", 2000).attr("height", 1000);
 
 svg.append("text").attr("x",450).attr("y",70)
-	.attr("class","header").text("縣市未成年反毒手法");
+	.attr("class","header").text("");
 	
 
 var g =[svg.append("g").attr("transform","translate(150,100)")
@@ -152,7 +152,7 @@ var bp=[ viz.bP()
 		.min(20)
 		.pad(01)
 		.height(600)
-		.width(600)
+		.width(500)
 		.barSize(35)
 		.fill(d=>color[d.primary])	
 ];
