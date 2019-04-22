@@ -2,11 +2,11 @@
 <meta charset="utf-8">
 <style>
 text{
-	font: size 10;px;}
+	font: size 11;px;}
 .mainBars rect{
   shape-rendering: auto;
   fill-opacity: 0 ;
-  stroke-width: 5px;
+  stroke-width: 2px;
   stroke: rgb(0, 0, 0);
   stroke-opacity: 0;}
 .subBars{
@@ -18,7 +18,7 @@ text{
 }
 .header{
 	text-anchor:middle;
-	font: size 10;px;
+	font: size 12;px;
 }
 line{
 	stroke:grey;
@@ -67,7 +67,7 @@ var data=[['運輸','新北市',9],
 ['轉讓','台中市',51],
 ['施用','台中市',320],
 ['持有','台中市',227],
-['製造','台中市',8]
+['製造','台中市',8],
 ['其他','台中市',0],
 ['運輸','台南市',0],
 ['販賣','台南市',60],
@@ -87,7 +87,7 @@ var data=[['運輸','新北市',9],
 ['轉讓','高雄市',41],
 ['施用','高雄市',206],
 ['持有','高雄市',163],
-['製造','高雄市',3]
+['製造','高雄市',3],
 ['其他','高雄市',0],
 ['運輸','宜蘭縣',0],
 ['販賣','宜蘭縣',26],
@@ -107,7 +107,7 @@ var data=[['運輸','新北市',9],
 ['轉讓','新竹縣',6],
 ['施用','新竹縣',43],
 ['持有','新竹縣',10],
-['製造','新竹縣',0]
+['製造','新竹縣',0],
 ['其他','新竹縣',0],
 ['運輸','苗栗縣',0],
 ['販賣','苗栗縣',37],
@@ -117,17 +117,14 @@ var data=[['運輸','新北市',9],
 ['轉讓','苗栗縣',15],
 ['施用','苗栗縣',85],
 ['持有','苗栗縣',4],
-['製造','苗栗縣',3]
+['製造','苗栗縣',3],
 ['其他','苗栗縣',0],
 ['運輸','彰化縣',2],
 ['販賣','彰化縣',46],
 ['意圖販賣','彰化縣',9],
 ['脅迫施用','彰化縣',0],
-['引誘他人使用','彰化縣',1],
-['轉讓','彰化縣',24],
-['施用','彰化縣',108],
 ['持有','彰化縣',21],
-['製造','彰化縣',1]
+['製造','彰化縣',1],
 ['其他','彰化縣',1],
 ['運輸','南投縣',0],
 ['販賣','南投縣',15],
@@ -137,53 +134,52 @@ var data=[['運輸','新北市',9],
 ['轉讓','南投縣',6],
 ['施用','南投縣',26],
 ['持有','南投縣',28],
-['製造','南投縣',0]
-['其他','南投縣',0],
+['製造','南投縣',0],
+['其他','南投縣',0]
 ];
-var color ={運輸:"#002642", 販賣:"#840032", 脅迫施用:"#E59500", 轉讓:"#02040F", 施用:"#CF4943", 製造:"#523F6D", 持有:"#C78136" , 意圖販賣 :"#C6D8D3" ,其他:"#D81E5B",};
-var svg = d3.select("body").append("svg").attr("width", 1000).attr("height", 800);
+var color ={運輸:"#002642", 販賣:"#840032", 脅迫施用:"#E59500", 轉讓:"#02040F", 施用:"#CF4943", 製造:"#523F6D", 持有:"#C78136" ,意圖販賣 :"#C6D8D3" , 其他:"#D81E5B",};
+var svg = d3.select("body").append("svg").attr("width", 2000).attr("height", 1000);
 
-svg.append("text").attr("x",250).attr("y",70)
-	.attr("class","header").text("");
+svg.append("text").attr("x",450).attr("y",70)
+	.attr("class","header").text("縣市未成年反毒手法");
 	
 
-var g =[svg.append("g").attr("transform","translate(200,100)")
-		,svg.append("g").attr("transform","translate(650,100)")];
+var g =[svg.append("g").attr("transform","translate(150,100)")
+		,svg.append("g").attr("transform","translate(750,100)")];
 
 var bp=[ viz.bP()
 		.data(data)
-		.min(12)
-		.pad(1)
+		.min(20)
+		.pad(01)
 		.height(600)
-		.width(200)
-		.barSize(50)
-		.fill(d=>color[d.primary])		
+		.width(600)
+		.barSize(35)
+		.fill(d=>color[d.primary])	
 ];
 		
 [0,1].forEach(function(i){
 	g[i].call(bp[i])
 	
-	g[i].append("text").attr("x",-50).attr("y",-8).style("text-anchor","middle").text("犯罪手法");
-	g[i].append("text").attr("x", 250).attr("y",-8).style("text-anchor","middle").text("縣市");
+	g[i].append("text").attr("x",-50).attr("y",-8).style("text-anchor","middle").text("行為");
+	g[i].append("text").attr("x", 550).attr("y",-8).style("text-anchor","middle").text("縣市");
 	
-	g[i].append("line").attr("x1",-100).attr("x2",200);
-	g[i].append("line").attr("x1",200).attr("x2",300);
+	g[i].append("line").attr("x1",-100).attr("x2",0);
+	g[i].append("line").attr("x1",500).attr("x2",600);
 	
-	g[i].append("line").attr("y1",610).attr("y2",610).attr("x1",-100).attr("x2",0);
-	g[i].append("line").attr("y1",610).attr("y2",610).attr("x1",200).attr("x2",300);
+
 	
 	g[i].selectAll(".mainBars")
 		.on("mouseover",mouseover)
 		.on("mouseout",mouseout);
 
 	g[i].selectAll(".mainBars").append("text").attr("class","label")
-		.attr("x",d=>(d.part=="primary"? -50: 30))
+		.attr("x",d=>(d.part=="primary"? -30: 30))
 		.attr("y",d=>+6)
 		.text(d=>d.key)
 		.attr("text-anchor",d=>(d.part=="primary"? "end": "start"));
 	
 	g[i].selectAll(".mainBars").append("text").attr("class","perc")
-		.attr("x",d=>(d.part=="primary"? -100: 80))
+		.attr("x",d=>(d.part=="primary"? -140: 80))
 		.attr("y",d=>+6)
 		.text(function(d){ return d3.format("0.0%")(d.percent)})
 		.attr("text-anchor",d=>(d.part=="primary"? "end": "start"));
