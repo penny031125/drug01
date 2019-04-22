@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+text{
+	font: size 11;px;}
+.mainBars rect{
+  shape-rendering: auto;
+  fill-opacity: 0 ;
+  stroke-width: 2px;
+  stroke: rgb(0, 0, 0);
+  stroke-opacity: 0;}
+.subBars{
+	shape-rendering:crispEdges;
+}
+.edges{
+	stroke:none;
+	fill-opacity:0.5;
+}
+.header{
+	text-anchor:middle;
+	font: size 12;px;
+}
+line{
+	stroke:grey;
+}
+</style>
+<body>
+<script src="d3.v4.min.js"></script>
+<script src="viz.v1.1.0.min.js"></script> </script>
+<script>
+
+var data=[['運輸','新北市',9],
+['販賣','新北市',418],
+['意圖販賣','新北市',71],
+['脅迫施用','新北市',1],
+['引誘他人使用','新北市',0],
+['轉讓','新北市',118],
+['施用','新北市',569],
+['持有','新北市',327],
+['製造','新北市',11],
+['其他','新北市',0,],
+['運輸','台北市',4],
+['販賣','台北市',125],
+['意圖販賣','台北市',50],
+['脅迫施用','台北市',1],
+['引誘他人使用','台北市',5],
+['轉讓','台北市',23],
+['施用','台北市',301],
+['持有','台北市',168],
+['製造','台北市',1],
+['其他','台北市',3],
+['運輸','桃園市',5],
+['販賣','桃園市',199],
+['意圖販賣','桃園市',66],
+['脅迫施用','桃園市',0],
+['引誘他人使用','桃園市',0],
+['轉讓','桃園市',45],
+['施用','桃園市',289],
+['持有','桃園市',138],
+['製造','桃園市',5],
+['其他','桃園市',3],
+['運輸','台中市',13],
+['販賣','台中市',159],
+['意圖販賣','台中市',35],
+['脅迫施用','台中市',0],
+['引誘他人使用','台中市',0],
+['轉讓','台中市',51],
+['施用','台中市',320],
+['持有','台中市',227],
+['製造','台中市',8],
+['其他','台中市',0],
+['運輸','台南市',0],
+['販賣','台南市',60],
+['意圖販賣','台南市',24],
+['脅迫施用','台南市',0],
+['引誘他人使用','台南市',1],
+['轉讓','台南市',36],
+['施用','台南市',219],
+['持有','台南市',57],
+['製造','台南市',0],
+['其他','台南市',0],
+['運輸','高雄市',29],
+['販賣','高雄市',111],
+['意圖販賣','高雄市',33],
+['脅迫施用','高雄市',0],
+['引誘他人使用','高雄市',1],
+['轉讓','高雄市',41],
+['施用','高雄市',206],
+['持有','高雄市',163],
+['製造','高雄市',3],
+['其他','高雄市',0],
+['運輸','宜蘭縣',0],
+['販賣','宜蘭縣',26],
+['意圖販賣','宜蘭縣',1],
+['脅迫施用','宜蘭縣',0],
+['引誘他人使用','宜蘭縣',0],
+['轉讓','宜蘭縣',5],
+['施用','宜蘭縣',26],
+['持有','宜蘭縣',13],
+['製造','宜蘭縣',0],
+['其他','宜蘭縣',0],
+['運輸','新竹縣',1],
+['販賣','新竹縣',12],
+['意圖販賣','新竹縣',9],
+['脅迫施用','新竹縣',0],
+['引誘他人使用','新竹縣',0],
+['轉讓','新竹縣',6],
+['施用','新竹縣',43],
+['持有','新竹縣',10],
+['製造','新竹縣',0],
+['其他','新竹縣',0],
+['運輸','苗栗縣',0],
+['販賣','苗栗縣',37],
+['意圖販賣','苗栗縣',21],
+['脅迫施用','苗栗縣',0],
+['引誘他人使用','苗栗縣',1],
+['轉讓','苗栗縣',15],
+['施用','苗栗縣',85],
+['持有','苗栗縣',4],
+['製造','苗栗縣',3],
+['其他','苗栗縣',0],
+['運輸','彰化縣',2],
+['販賣','彰化縣',46],
+['意圖販賣','彰化縣',9],
+['脅迫施用','彰化縣',0],
+['持有','彰化縣',21],
+['製造','彰化縣',1],
+['其他','彰化縣',1],
+['運輸','南投縣',0],
+['販賣','南投縣',15],
+['意圖販賣','南投縣',1],
+['脅迫施用','南投縣',0],
+['引誘他人使用','南投縣',0],
+['轉讓','南投縣',6],
+['施用','南投縣',26],
+['持有','南投縣',28],
+['製造','南投縣',0],
+['其他','南投縣',0]
+];
+var color ={運輸:"#002642", 販賣:"#840032", 脅迫施用:"#E59500", 轉讓:"#02040F", 施用:"#CF4943", 製造:"#523F6D", 持有:"#C78136" ,意圖販賣 :"#C6D8D3" , 其他:"#D81E5B",};
+var svg = d3.select("body").append("svg").attr("width", 2000).attr("height", 1000);
+
+svg.append("text").attr("x",450).attr("y",70)
+	.attr("class","header").text("縣市未成年反毒手法");
+	
+
+var g =[svg.append("g").attr("transform","translate(150,100)")
+		,svg.append("g").attr("transform","translate(750,100)")];
+
+var bp=[ viz.bP()
+		.data(data)
+		.min(20)
+		.pad(01)
+		.height(600)
+		.width(600)
+		.barSize(35)
+		.fill(d=>color[d.primary])	
+];
+		
+[0,1].forEach(function(i){
+	g[i].call(bp[i])
+	
+	g[i].append("text").attr("x",-50).attr("y",-8).style("text-anchor","middle").text("行為");
+	g[i].append("text").attr("x", 550).attr("y",-8).style("text-anchor","middle").text("縣市");
+	
+	g[i].append("line").attr("x1",-100).attr("x2",0);
+	g[i].append("line").attr("x1",500).attr("x2",600);
+	
+
+	
+	g[i].selectAll(".mainBars")
+		.on("mouseover",mouseover)
+		.on("mouseout",mouseout);
+
+	g[i].selectAll(".mainBars").append("text").attr("class","label")
+		.attr("x",d=>(d.part=="primary"? -30: 30))
+		.attr("y",d=>+6)
+		.text(d=>d.key)
+		.attr("text-anchor",d=>(d.part=="primary"? "end": "start"));
+	
+	g[i].selectAll(".mainBars").append("text").attr("class","perc")
+		.attr("x",d=>(d.part=="primary"? -140: 80))
+		.attr("y",d=>+6)
+		.text(function(d){ return d3.format("0.0%")(d.percent)})
+		.attr("text-anchor",d=>(d.part=="primary"? "end": "start"));
+});
+
+function mouseover(d){
+	[0,1].forEach(function(i){
+		bp[i].mouseover(d);
+		
+		g[i].selectAll(".mainBars").select(".perc")
+		.text(function(d){ return d3.format("0.0%")(d.percent)});
+	});
+}
+function mouseout(d){
+	[0,1].forEach(function(i){
+		bp[i].mouseout(d);
+		
+		g[i].selectAll(".mainBars").select(".perc")
+		.text(function(d){ return d3.format("0.0%")(d.percent)});
+	});
+}
+d3.select(self.frameElement).style("height", "800px");
+</script>
+</body>
+</html>
